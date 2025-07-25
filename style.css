@@ -6,12 +6,17 @@
 }
 
 body {
+  background-color: skyblue;
   font-family: sans-serif;
   margin: 1em;
 }
 
 nav li {
   list-style: none;
+}
+
+li {
+  list-style-position: inside;
 }
 
 .logo {
