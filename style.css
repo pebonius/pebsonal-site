@@ -45,5 +45,20 @@ p {
 }
 
 main {
-    max-width: 60em;
+  max-width: 60em;
+}
+
+.reviews li {
+  padding: 1em;
+  border: 1px solid black;
+  text-align: center;
+}
+
+.review-text {
+  font-style: italic;
+  font-size: 1.2em;
+}
+
+.review-author:before {
+  content: " - ";
 }
