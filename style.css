@@ -12,11 +12,11 @@ body {
 }
 
 a {
-  color: darkblue;
+  color: blue;
 }
 
 a:visited {
-  color: darkblue;
+  color: blue;
 }
 
 ul {
