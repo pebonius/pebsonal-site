@@ -11,6 +11,14 @@ body {
   margin: 1em;
 }
 
+a {
+  color: darkblue;
+}
+
+a:visited {
+  color: darkblue;
+}
+
 ul {
   list-style: none;
 }
@@ -61,4 +69,40 @@ main {
 
 .review-author:before {
   content: " - ";
+}
+
+.cover {
+  margin: 1em 0;
+  width: fit-content;
+  height: 12em;
+  border: 1px solid black;
+}
+
+.cover img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.play-button-container {
+  margin: 2em 0;
+}
+
+.play-button {
+  padding: 1em;
+  background-color: blue;
+  color: powderblue;
+  text-decoration: none;
+  border-bottom: 0.5em solid darkblue;
+  border-right: 0.5em solid darkslateblue;
+  border-top: 0.5em solid skyblue;
+  border-left: 0.5em solid dodgerblue;
+  font-weight: bold;
+}
+
+.play-button:visited {
+  color: powderblue;
+}
+
+.play-button::after {
+  content: " ▷";
 }
