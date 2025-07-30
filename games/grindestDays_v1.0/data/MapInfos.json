@@ -1,0 +1,7 @@
+[
+null,
+{"id":1,"expanded":false,"name":"overworld","order":1,"parentId":0,"scrollX":832,"scrollY":640},
+{"id":2,"expanded":false,"name":"dev room","order":2,"parentId":1,"scrollX":819,"scrollY":448},
+{"id":3,"expanded":false,"name":"lastDungeon","order":3,"parentId":1,"scrollX":832,"scrollY":640},
+{"id":4,"expanded":false,"name":"ending","order":4,"parentId":1,"scrollX":819,"scrollY":448}
+]

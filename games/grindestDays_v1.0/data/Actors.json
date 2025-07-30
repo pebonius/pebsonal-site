@@ -1,0 +1,6 @@
+[
+null,
+{"id":1,"battlerName":"Actor1_1","characterIndex":0,"characterName":"Actor1","classId":1,"equips":[1,1],"faceIndex":0,"faceName":"Actor1","traits":[],"initialLevel":1,"maxLevel":99,"name":"Hero","nickname":"","note":"","profile":""},
+{"id":2,"battlerName":"Actor2_5","characterIndex":4,"characterName":"Actor2","classId":2,"equips":[4,1],"faceIndex":4,"faceName":"Actor2","traits":[],"initialLevel":1,"maxLevel":99,"name":"Archer","nickname":"","note":"","profile":""},
+{"id":3,"battlerName":"Actor2_6","characterIndex":5,"characterName":"Actor2","classId":3,"equips":[3,1],"faceIndex":5,"faceName":"Actor2","traits":[],"initialLevel":1,"maxLevel":99,"name":"Witch","nickname":"","note":"","profile":""}
+]
