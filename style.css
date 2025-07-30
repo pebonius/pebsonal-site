@@ -107,6 +107,10 @@ main {
   content: " ▷";
 }
 
-.credits li:before {
+.credits li::before {
   content: "💙";
+}
+
+.back::before {
+  content: "← ";
 }
