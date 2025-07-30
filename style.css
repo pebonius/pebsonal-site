@@ -106,3 +106,7 @@ main {
 .play-button::after {
   content: " ▷";
 }
+
+.credits li:before {
+  content: "💙";
+}
