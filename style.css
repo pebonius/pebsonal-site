@@ -1,26 +1,39 @@
 :root {
   --max-container-width: 60em;
+  --bg-color-1: lightskyblue;
+  --bg-color-2: lightcyan;
+  --theme-color-1: blue;
+  --border-color: darkblue;
 }
 
 * {
-  /* border: 1px solid black; */
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 
+html {
+  background-color: var(--bg-color-1);
+  padding: 0.5em;
+  min-height: 100vh;
+}
+
 body {
-  background-color: powderblue;
+  background-color: var(--bg-color-2);
   font-family: sans-serif;
-  margin: 1em;
+  max-width: var(--max-container-width);
+  min-height: calc(100vh - 1em);
+  margin: 0 auto;
+  padding: 1em;
+  border: 1px solid var(--border-color);
 }
 
 a {
-  color: blue;
+  color: var(--theme-color-1);
 }
 
 a:visited {
-  color: blue;
+  color: var(--theme-color-1);
 }
 
 ul {
@@ -31,7 +44,51 @@ li {
   margin: 0.5em 0;
 }
 
+h1 {
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+header h1 {
+  text-align: center;
+  text-transform: uppercase;
+}
+
+main {
+  text-align: center;
+  margin: 0 auto;
+  max-width: 50em;
+}
+
+h2 {
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+p {
+  margin: 1em 0;
+}
+
+header nav {
+  margin: 2em 0;
+  text-align: center;
+}
+
+header nav ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+header nav ul li a {
+  padding: 0.5em;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
 .logo {
+  width: fit-content;
+  margin: 0 auto;
   display: flex;
   align-items: center;
 }
@@ -42,49 +99,21 @@ li {
   justify-content: center;
 }
 
-h1 {
-  margin-top: 1em;
-  margin-bottom: 0.5em;
+.longtext {
+  text-align: left;
 }
 
-h2 {
-  margin-top: 1em;
-  margin-bottom: 0.5em;
-}
-
-p {
-  margin: 0.5em 0;
-}
-
-main {
-  max-width: var(--max-container-width);
-}
-
-.reviews li {
-  padding: 1em;
-  border: 1px solid black;
-  text-align: center;
-}
-
-.review-text {
-  font-style: italic;
-  font-size: 1.2em;
-}
-
-.review-author:before {
-  content: " - ";
-}
+/* GAME PAGE */
 
 .cover {
   margin: 1em 0;
-  width: fit-content;
   height: 12em;
-  border: 1px solid black;
 }
 
 .cover img {
   max-width: 100%;
   max-height: 100%;
+  border: 1px solid var(--border-color);
 }
 
 .play-button-container {
@@ -92,6 +121,7 @@ main {
 }
 
 .play-button {
+  display: inline-block;
   padding: 1em;
   background-color: blue;
   color: powderblue;
@@ -115,21 +145,43 @@ main {
   content: "💙";
 }
 
-.back::before {
-  content: "← ";
+.credits li::after {
+  content: "💙";
 }
+
+.reviews li {
+  padding: 1em;
+  border: 1px solid var(--border-color);
+  text-align: center;
+}
+
+.review-text {
+  font-style: italic;
+  font-size: 1.2em;
+}
+
+.review-author {
+  display: block;
+}
+
+.review-author:before {
+  content: " - ";
+}
+
+/* GAMES LIST */
 
 .game-gallery {
   display: grid;
   grid-template-columns: 16em 16em 16em;
   row-gap: 1em;
   column-gap: 1em;
-  margin: 1em 0;
+  width: fit-content;
+  margin: 1em auto;
 }
 
 .game-tile {
   text-align: center;
-  border: 1px solid black;
+  border: 1px solid var(--border-color);
   padding: 0.2em;
   width: 16em;
 }
@@ -149,13 +201,14 @@ main {
   grid-template-columns: 25em 25em;
   row-gap: 1em;
   column-gap: 1em;
-  margin: 1em 0;
+  width: fit-content;
+  margin: 1em auto;
 }
 
 .art-tile {
   width: 25em;
   text-align: center;
-  border: 1px solid black;
+  border: 1px solid var(--border-color);
   padding: 0.2em;
 }
 
@@ -166,6 +219,16 @@ main {
 
 .art-tile img {
   width: 100%;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.links li {
+  margin: 2em 1em;
 }
 
 @media (max-width: 60em) {
@@ -183,6 +246,15 @@ main {
 }
 
 @media (max-width: 36em) {
+  header nav ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .links {
+    display: block;
+  }
+
   .game-gallery {
     grid-template-columns: 16em;
   }
