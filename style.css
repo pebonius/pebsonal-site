@@ -60,6 +60,11 @@ main {
   max-width: 50em;
 }
 
+video {
+  max-width: 100%;
+  margin: 1em 0;
+}
+
 h2 {
   margin-top: 1em;
   margin-bottom: 0.5em;
@@ -150,6 +155,12 @@ header nav ul li a {
 }
 
 .reviews li {
+  padding: 1em;
+  border: 1px solid var(--border-color);
+  text-align: center;
+}
+
+.review {
   padding: 1em;
   border: 1px solid var(--border-color);
   text-align: center;
