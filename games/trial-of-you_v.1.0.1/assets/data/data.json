@@ -1,0 +1,840 @@
+{
+  "meta": {
+    "title": "trial of you",
+    "menuBackground": "menuBg",
+    "menuMusic": "aNewTown",
+    "about": "hi thanks for playing"
+  },
+  "playerData": {
+    "name": "player",
+    "map": 3,
+    "posX": 7,
+    "posY": 2,
+    "sprite": "109"
+  },
+  "variables": [
+    { "name": "towerIntroPlayed", "value": false },
+    { "name": "trialLearned", "value": false },
+    { "name": "villageIntroPlayed", "value": false },
+    { "name": "nonLinearPlayed", "value": false },
+    { "name": "cropsTrampled", "value": false },
+    { "name": "villageBitActive", "value": false },
+    { "name": "notBotherActive", "value": true },
+    { "name": "townIntroPlayed", "value": false },
+    { "name": "masterDead", "value": false },
+    { "name": "endingUnlocked", "value": false }
+  ],
+  "maps": [
+    {
+      "name": "map1",
+      "walkableTiles": [1, 1],
+      "tiles": [
+        [23, 29, 23, 23, 23, 23, 23, 26, 26, 23],
+        [24, 1, 22, 23, 23, 26, 27, 62, 63, 25],
+        [24, 1, 25, 23, 24, 1, 1, 1, 65, 42],
+        [27, 1, 1, 22, 27, 1, 42, 54, 54, 54],
+        [33, 1, 31, 35, 33, 1, 43, 54, 54, 54],
+        [36, 1, 34, 35, 36, 1, 1, 1, 1, 34],
+        [36, 1, 37, 38, 39, 1, 31, 33, 1, 34],
+        [36, 1, 1, 1, 1, 1, 34, 36, 1, 34],
+        [36, 1, 31, 32, 32, 32, 35, 36, 1, 34],
+        [35, 32, 35, 35, 35, 35, 35, 36, 1, 34]
+      ],
+      "events": [
+        {
+          "name": "notBother",
+          "posX": 1,
+          "posY": 2,
+          "sprite": "",
+          "condition": "variableValueIs",
+          "conditionArgs": ["notBotherActive", true],
+          "actions": [
+            {
+              "name": "playDialogue",
+              "arguments": [
+                [
+                  { "text": "i think i shouldnt bother the old man right now" },
+                  { "text": "he wanted some alone time" }
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "name": "towerEntrance",
+          "posX": 1,
+          "posY": 1,
+          "sprite": "30",
+          "actions": [
+            {
+              "name": "movePlayer",
+              "arguments": [4, 9, 3]
+            },
+            {
+              "name": "playMusic",
+              "arguments": ["calmTheme", true]
+            }
+          ]
+        },
+        {
+          "name": "village",
+          "posX": 2,
+          "posY": 3,
+          "sprite": "3",
+          "actions": [
+            {
+              "name": "movePlayer",
+              "arguments": [0, 4, 1]
+            },
+            { "name": "playMusic", "arguments": ["townTheme", true] }
+          ]
+        },
+        {
+          "name": "cabbageMan",
+          "posX": 6,
+          "posY": 2,
+          "sprite": "107",
+          "condition": "variableValueIs",
+          "conditionArgs": ["cropsTrampled", false],
+          "actions": [
+            {
+              "name": "playDialogue",
+              "arguments": [
+                [
+                  { "text": "man: <<wait, YOU want to go into town?>>" },
+                  { "text": "uhh, yeah?" },
+                  { "text": "man: <<pff i think i doubt it>>" },
+                  { "text": "man: <<a weakling like you is no good>>" },
+                  {
+                    "text": "man: <<have you ever ran across a cabbage field>>"
+                  },
+                  { "text": "man: <<i bet not>>" },
+                  { "text": "no i haven't in actuality" },
+                  { "text": "man: <<bah!>>" }
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "name": "town",
+          "posX": 7,
+          "posY": 2,
+          "sprite": "64",
+          "actions": [
+            {
+              "name": "movePlayer",
+              "arguments": [0, 7, 2]
+            },
+            { "name": "playMusic", "arguments": ["aNewTown", true] }
+          ]
+        },
+        {
+          "name": "brambles",
+          "posX": 8,
+          "posY": 8,
+          "sprite": "79",
+          "condition": "variableValueIs",
+          "conditionArgs": ["endingUnlocked", false],
+          "actions": [
+            {
+              "name": "playDialogue",
+              "arguments": [
+                [
+                  { "text": "here grow wild brambles" },
+                  { "text": "i cannot pass" },
+                  { "text": "so much for non-linear gameplay i guess" }
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "name": "forestEntrance",
+          "posX": 8,
+          "posY": 9,
+          "sprite": "",
+          "actions": [
+            {
+              "name": "movePlayer",
+              "arguments": [8, 0, 4]
+            },
+            { "name": "playMusic", "arguments": ["darkForest", true] }
+          ]
+        },
+        {
+          "name": "villageBitScuffed",
+          "posX": 1,
+          "posY": 5,
+          "sprite": "",
+          "condition": "variableValueIs",
+          "conditionArgs": ["villageBitActive", true],
+          "actions": [
+            {
+              "name": "setVariableValue",
+              "arguments": ["villageBitActive", false]
+            },
+            {
+              "name": "playDialogue",
+              "arguments": [
+                [
+                  { "text": "ok that village was kinda scuffed" },
+                  { "text": "let's see what happens from here on out" }
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "name": "holeWithWater",
+          "posX": 1,
+          "posY": 8,
+          "sprite": "4",
+          "actions": [
+            {
+              "name": "playDialogue",
+              "arguments": [
+                [
+                  { "text": "what's this" },
+                  { "text": "a hole filled with water?" },
+                  { "text": "cool" }
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "village",
+      "walkableTiles": [1, 67, 68, 69, 70, 71, 72, 73, 74, 75, 102],
+      "tiles": [
+        [2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+        [2, 80, 81, 81, 81, 81, 81, 81, 82, 2],
+        [2, 83, 1, 1, 1, 94, 95, 96, 83, 2],
+        [2, 83, 1, 1, 1, 97, 1, 98, 83, 2],
+        [1, 1, 1, 1, 1, 99, 102, 101, 83, 2],
+        [2, 83, 67, 69, 1, 1, 1, 1, 83, 2],
+        [2, 83, 70, 72, 1, 1, 1, 1, 83, 2],
+        [2, 83, 73, 75, 1, 1, 1, 1, 83, 2],
+        [2, 86, 81, 81, 81, 81, 81, 81, 85, 2],
+        [2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+      ],
+      "events": [
+        {
+          "name": "villageIntro",
+          "posX": 1,
+          "posY": 4,
+          "sprite": "",
+          "condition": "variableValueIs",
+          "conditionArgs": ["villageIntroPlayed", false],
+          "actions": [
+            {
+              "name": "setVariableValue",
+              "arguments": ["villageIntroPlayed", true]
+            },
+            {
+              "name": "setVariableValue",
+              "arguments": ["villageBitActive", true]
+            },
+            {
+              "name": "playDialogue",
+              "arguments": [
+                [
+                  { "text": "ok im here now" },
+                  { "text": "some kinda village" },
+                  { "text": "was it here when i went to master's tower?" },
+                  { "text": "i don't remember much" },
+                  { "text": "maybe i just talk to the locals, see whats up" }
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "name": "house1",
+          "posX": 6,
+          "posY": 6,
+          "sprite": "8",
+          "actions": [
+            {
+              "name": "playDialogue",
+              "arguments": [
+                [
+                  { "text": "the door is locked" },
+                  { "text": "im not in the mood for breaking and entering" }
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "name": "house2",
+          "posX": 3,
+          "posY": 3,
+          "sprite": "8",
+          "actions": [
+            {
+              "name": "playDialogue",
+              "arguments": [
+                [
+                  { "text": "*knock knock* anyone home?" },
+                  { "text": "guess not" }
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "name": "house3",
+          "posX": 6,
+          "posY": 3,
+          "sprite": "103",
+          "actions": [
+            {
+              "name": "playDialogue",
+              "arguments": [
+                [
+                  { "text": "a big house on the hill" },
+                  { "text": "must be nice to be a property owner" }
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "name": "villager1",
+          "posX": 2,
+          "posY": 3,
+          "sprite": "105",
+          "actions": [
+            {
+              "name": "playDialogue",
+              "arguments": [
+                [
+                  { "text": "hey" },
+                  { "text": "villager: <<hey>>" },
+                  { "text": "..." },
+                  { "text": "uhh, so what's up with you?" },
+                  { "text": "villager: <<what's up with freaking you>>" },
+                  { "text": "villager: <<i live here>>" },
+                  { "text": "yeah figures" },
+                  { "text": "any rumours lately?" },
+                  { "text": "villager: <<nothing that should concern you>>" },
+                  { "text": "fair enough" }
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "name": "villager2",
+          "posX": 4,
+          "posY": 6,
+          "sprite": "104",
+          "actions": [
+            {
+              "name": "playDialogue",
+              "arguments": [
+                [
+                  { "text": "so, you're a farmer i guess huh?" },
+                  { "text": "villager: <<yeah>>" },
+                  { "text": "so... what do you farm?" },
+                  { "text": "villager: <<mostly cabbage>>" },
+                  { "text": "ah cool" },
+                  { "text": "villager: <<yeah>>" },
+                  { "text": "k good talk, see you around" }
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "name": "trampleCrops",
+          "posX": 2,
+          "posY": 6,
+          "sprite": "",
+          "condition": "variableValueIs",
+          "conditionArgs": ["cropsTrampled", false],
+          "actions": [
+            {
+              "name": "setVariableValue",
+              "arguments": ["cropsTrampled", true]
+            },
+            {
+              "name": "playDialogue",
+              "arguments": [
+                [{ "text": "maybe i should stop trampling peoples crops" }]
+              ]
+            }
+          ]
+        },
+        {
+          "name": "villageExit1",
+          "posX": 0,
+          "posY": 4,
+          "sprite": "",
+          "actions": [
+            {
+              "name": "movePlayer",
+              "arguments": [1, 3, 0]
+            },
+            { "name": "playMusic", "arguments": ["grasslands", true] }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "town",
+      "walkableTiles": [1, 131],
+      "tiles": [
+        [26, 26, 26, 26, 26, 26, 26, 26, 26, 26],
+        [83, 1, 1, 66, 66, 66, 66, 1, 1, 83],
+        [83, 66, 1, 1, 1, 1, 1, 1, 66, 83],
+        [83, 1, 1, 1, 78, 76, 78, 1, 1, 83],
+        [83, 66, 1, 1, 78, 1, 78, 1, 66, 83],
+        [83, 1, 1, 1, 78, 131, 78, 1, 1, 83],
+        [86, 66, 1, 1, 1, 1, 1, 1, 66, 83],
+        [1, 1, 1, 66, 66, 66, 66, 1, 1, 83],
+        [80, 78, 1, 1, 1, 1, 1, 1, 1, 83],
+        [86, 81, 81, 81, 81, 81, 81, 81, 81, 85]
+      ],
+      "events": [
+        {
+          "name": "townIntro",
+          "posX": 1,
+          "posY": 7,
+          "sprite": "",
+          "condition": "variableValueIs",
+          "conditionArgs": ["townIntroPlayed", false],
+          "actions": [
+            {
+              "name": "setVariableValue",
+              "arguments": ["townIntroPlayed", true]
+            },
+            {
+              "name": "playDialogue",
+              "arguments": [
+                [
+                  { "text": "nice, an urban setting" },
+                  {
+                    "text": "maybe some plot development can happen here"
+                  }
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "name": "townsperson",
+          "posX": 3,
+          "posY": 4,
+          "sprite": "106",
+          "condition": "variableValueIs",
+          "conditionArgs": ["endingUnlocked", false],
+          "actions": [
+            {
+              "name": "setVariableValue",
+              "arguments": ["masterDead", true]
+            },
+            {
+              "name": "setVariableValue",
+              "arguments": ["notBotherActive", false]
+            },
+            {
+              "name": "playDialogue",
+              "arguments": [
+                [
+                  { "text": "hello, townsperson" },
+                  { "text": "person: <<greetings>>" },
+                  {
+                    "text": "person: <<what brings you to our beautiful town?>>"
+                  },
+                  { "text": "i was sent out on a trial to seek out my future" },
+                  { "text": "person: <<ah i see>>" },
+                  { "text": "person: <<wait, don't tell me>>" },
+                  {
+                    "text": "person: <<are you by chance the wizards disciple?>>"
+                  },
+                  { "text": "ah yeah" },
+                  { "text": "person: <<i see!>>" },
+                  { "text": "person: <<i am awed to hear hes still alive>>" },
+                  { "text": "woah rude" },
+                  { "text": "person: <<ah, sorry! it's just that...>>" },
+                  { "text": "person: <<well... he is older than our town>>" },
+                  { "text": "uhh right" },
+                  { "text": "well if you put it this way" },
+                  { "text": "i never thought that he COULD die" },
+                  { "text": "person: <<wizards can live very long>>" },
+                  { "text": "person: <<some say as long as 1000 years>>" },
+                  { "text": "that's amazing!" },
+                  { "text": "that reminds me" },
+                  { "text": "wasn't today like his birthday or something?" },
+                  {
+                    "text": "person: <<oh! make sure to wish him all the best!>>"
+                  },
+                  { "text": "thanks, I will!" }
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "name": "curvyStatue",
+          "posX": 5,
+          "posY": 4,
+          "sprite": "77",
+          "actions": [
+            {
+              "name": "playDialogue",
+              "arguments": [
+                [
+                  { "text": "a statue of a curvy lady" },
+                  { "text": "how decadent" }
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "name": "townExit",
+          "posX": 0,
+          "posY": 7,
+          "sprite": "",
+          "actions": [
+            {
+              "name": "movePlayer",
+              "arguments": [6, 2, 0]
+            },
+            { "name": "playMusic", "arguments": ["grasslands", true] }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "tower",
+      "walkableTiles": [117, 122, 131],
+      "tiles": [
+        [118, 119, 119, 119, 119, 118, 119, 119, 119, 120],
+        [121, 129, 129, 129, 129, 121, 129, 129, 129, 123],
+        [121, 117, 117, 117, 117, 121, 122, 122, 122, 123],
+        [121, 117, 117, 117, 117, 121, 122, 122, 122, 123],
+        [121, 117, 117, 117, 117, 125, 126, 122, 126, 123],
+        [121, 117, 117, 117, 117, 129, 129, 131, 129, 123],
+        [121, 117, 117, 117, 117, 117, 117, 117, 117, 123],
+        [121, 117, 117, 117, 117, 117, 117, 117, 117, 123],
+        [121, 117, 117, 121, 117, 123, 117, 117, 117, 123],
+        [125, 126, 126, 127, 117, 125, 126, 126, 126, 127]
+      ],
+      "events": [
+        {
+          "name": "towerIntro",
+          "posX": 7,
+          "posY": 4,
+          "sprite": "",
+          "condition": "variableValueIs",
+          "conditionArgs": ["towerIntroPlayed", false],
+          "actions": [
+            {
+              "name": "setVariableValue",
+              "arguments": ["towerIntroPlayed", true]
+            },
+            {
+              "name": "playDialogue",
+              "arguments": [
+                [
+                  {
+                    "text": "so",
+                    "action": {
+                      "name": "playMusic",
+                      "arguments": ["calmTheme", true]
+                    }
+                  },
+                  { "text": "today is the day" },
+                  { "text": "finally ill undergo the trial" },
+                  { "text": "i wonder what master has in store for me" },
+                  {
+                    "text": "i better go downstairs and not make old man wait"
+                  }
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "name": "cannotGo",
+          "posX": 4,
+          "posY": 8,
+          "sprite": "",
+          "condition": "variableValueIs",
+          "conditionArgs": ["trialLearned", false],
+          "actions": [
+            {
+              "name": "playDialogue",
+              "arguments": [
+                [
+                  { "text": "i cant go yet" },
+                  { "text": "i havent learned what my trial is" }
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "name": "towerExit",
+          "posX": 4,
+          "posY": 9,
+          "sprite": "",
+          "actions": [
+            {
+              "name": "movePlayer",
+              "arguments": [1, 2, 0]
+            },
+            { "name": "playMusic", "arguments": ["grasslands", true] }
+          ]
+        },
+        {
+          "name": "crate",
+          "posX": 6,
+          "posY": 2,
+          "sprite": "134",
+          "actions": [
+            {
+              "name": "playDialogue",
+              "arguments": [
+                [
+                  { "text": "theres no inventory system in this game" },
+                  { "text": "so no point looking at crates" }
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "name": "bed1",
+          "posX": 8,
+          "posY": 2,
+          "sprite": "115",
+          "actions": [
+            {
+              "name": "playDialogue",
+              "arguments": [[{ "text": "ah, the love of my life - bed" }]]
+            }
+          ]
+        },
+        {
+          "name": "bed2",
+          "posX": 8,
+          "posY": 3,
+          "sprite": "116",
+          "actions": [
+            {
+              "name": "playDialogue",
+              "arguments": [[{ "text": "ah, the love of my life - bed" }]]
+            }
+          ]
+        },
+        {
+          "name": "crystalBall",
+          "posX": 2,
+          "posY": 3,
+          "sprite": "145",
+          "actions": [
+            {
+              "name": "playDialogue",
+              "arguments": [
+                [
+                  { "text": "only master can read the crystal ball" },
+                  { "text": "i only see fog inside" },
+                  { "text": "or maybe that means therell be fog tomorrow?" }
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "name": "mastersGrave",
+          "posX": 3,
+          "posY": 4,
+          "sprite": "149",
+          "condition": "variableValueIs",
+          "conditionArgs": ["masterDead", true],
+          "actions": [
+            {
+              "name": "setVariableValue",
+              "arguments": ["endingUnlocked", true]
+            },
+            {
+              "name": "playDialogue",
+              "arguments": [
+                [
+                  { "text": "nooooooo" },
+                  { "text": "master... what happened" },
+                  { "text": "wait, i think he did say he was 999 yo" },
+                  { "text": "so it really was his birthday today" },
+                  { "text": "this is so sad" },
+                  { "text": "there is a grave almost right where he stood" },
+                  { "text": "rip" },
+                  { "text": "master: <<young one...>>" },
+                  { "text": "this voice?" },
+                  {
+                    "text": "master: <<i am speaking to you from astral plane>>"
+                  },
+                  {
+                    "text": "master: <<sorry for being kind of a dick earlier>>"
+                  },
+                  {
+                    "text": "master: <<guess i was tilted my life was ending>>"
+                  },
+                  {
+                    "text": "master: <<i do want to give you a proper trial>>"
+                  },
+                  {
+                    "text": "master: <<there is a forest south of here>>"
+                  },
+                  {
+                    "text": "master: <<there you will find a man named yoyo>>"
+                  },
+                  { "text": "master: <<seek him out and tell him thus:>>" },
+                  { "text": "master: <<your trial is over>>" },
+                  { "text": "master: <<that is all>>" },
+                  { "text": "so... i will undergo a proper trial after all" },
+                  {
+                    "text": "master: <<you dont need to if you don't want to>>"
+                  },
+                  { "text": "master: <<i dont care either way, im dead lol>>" },
+                  { "text": "lol" },
+                  {
+                    "text": "master: <<i used all my power to tell you this>>"
+                  },
+                  { "text": "master: <<this concludes my message>>" },
+                  { "text": "master: <<peace out>>" },
+                  { "text": "master..." },
+                  { "text": "i will never forget the lessons you taught me" },
+                  { "text": "wait, what did he teach me again?" }
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "name": "master",
+          "posX": 3,
+          "posY": 3,
+          "sprite": "110",
+          "condition": "variableValueIs",
+          "conditionArgs": ["masterDead", false],
+          "actions": [
+            {
+              "name": "setVariableValue",
+              "arguments": ["trialLearned", true]
+            },
+            {
+              "name": "playDialogue",
+              "arguments": [
+                [
+                  { "text": "master" },
+                  { "text": "master: <<hello young one>>" },
+                  { "text": "i am ready" },
+                  { "text": "what trial have you in store for me" },
+                  { "text": "master: <<you are eager to start>>" },
+                  { "text": "master: <<good>>" },
+                  { "text": "master: <<your trial is thus>>" },
+                  { "text": "master: <<go out of this tower>>" },
+                  { "text": "master: <<seek out your own future>>" },
+                  { "text": "master: <<live your life how you see fit>>" },
+                  { "text": "master: <<be a person>>" },
+                  { "text": "..." },
+                  { "text": "that's it?" },
+                  { "text": "doesnt sound that hard tbh" },
+                  { "text": "master: <<you'd fucking be surprised>>" },
+                  { "text": "ok master how long shall the trial last?" },
+                  { "text": "master: <<the rest of your life im afraid>>" },
+                  { "text": "i see" },
+                  { "text": "soo i just go out and do my stuff" },
+                  { "text": "master: <<that's the trial>>" },
+                  { "text": "so basically you're kicking me out" },
+                  { "text": "master: <<listen>>" },
+                  { "text": "master: <<i'm like 999 years old>>" },
+                  { "text": "master: <<i got no friends, no family>>" },
+                  { "text": "master: <<i got nothing more to teach you>>" },
+                  { "text": "master: <<maybe i never did>>" },
+                  { "text": "master: <<go and do your thing ok?>>" },
+                  { "text": "master: <<just... just let me be>>" },
+                  { "text": "uhh ok?" }
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "forest",
+      "walkableTiles": [1],
+      "tiles": [
+        [2, 2, 2, 2, 2, 2, 2, 2, 1, 2],
+        [2, 1, 1, 1, 1, 1, 1, 1, 1, 2],
+        [2, 1, 2, 2, 2, 2, 2, 2, 2, 2],
+        [2, 1, 2, 2, 2, 2, 2, 2, 2, 2],
+        [2, 1, 2, 2, 1, 1, 1, 1, 1, 2],
+        [2, 1, 2, 2, 2, 2, 2, 2, 1, 2],
+        [2, 1, 2, 2, 2, 2, 2, 2, 1, 2],
+        [2, 1, 2, 2, 2, 2, 2, 2, 1, 2],
+        [2, 1, 1, 1, 1, 1, 1, 1, 1, 2],
+        [2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+      ],
+      "events": [
+        {
+          "name": "yoyo",
+          "posX": 4,
+          "posY": 4,
+          "sprite": "108",
+          "actions": [
+            {
+              "name": "playDialogue",
+              "arguments": [
+                [
+                  { "text": "yo, you yoyo?" },
+                  { "text": "yoyo: <<yep>>" },
+                  { "text": "yoyo: <<wait, how'd you know?>>" },
+                  { "text": "uhh master told me to find you here" },
+                  { "text": "he said to tell you your trial is over" },
+                  { "text": "was his dying wish actually" },
+                  { "text": "yoyo: <<ah, so the old man finally died>>" },
+                  { "text": "yoyo: <<thanks for bringing me his message>>" },
+                  { "text": "yeah no probs" },
+                  { "text": "just out of curiosity" },
+                  { "text": "what was your trial?" },
+                  { "text": "yoyo: <<count every leaf in this forest>>" },
+                  { "text": "i see" },
+                  { "text": "master really was kind of a dick wasnt he" },
+                  { "text": "yoyo: <<yeah hehe>>" },
+                  { "text": "hehe" },
+                  { "text": "[THE END]" },
+                  {
+                    "text": ":)",
+                    "action": { "name": "endGame", "arguments": [] }
+                  }
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "name": "forestExit",
+          "posX": 8,
+          "posY": 0,
+          "sprite": "",
+          "actions": [
+            {
+              "name": "movePlayer",
+              "arguments": [8, 9, 0]
+            },
+            { "name": "playMusic", "arguments": ["grasslands", true] }
+          ]
+        }
+      ]
+    }
+  ]
+}
