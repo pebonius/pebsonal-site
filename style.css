@@ -207,6 +207,8 @@ header nav ul li a {
   text-decoration: none;
 }
 
+/* ART */
+
 .art-selection {
   display: grid;
   grid-template-columns: 25em 25em;
@@ -232,6 +234,22 @@ header nav ul li a {
   width: 100%;
 }
 
+/* DRAWINGS */
+.drawing-gallery {
+  display: grid;
+  grid-template-columns: 25em 25em;
+  width: fit-content;
+  margin: 1em auto;
+}
+
+.drawing-gallery img {
+  width: 25em;
+  height: 25em;
+  object-fit: cover;
+}
+
+/* LINKS */
+
 .links {
   display: flex;
   flex-wrap: wrap;
@@ -254,6 +272,15 @@ header nav ul li a {
   .art-tile {
     width: 16em;
   }
+
+  .drawing-gallery {
+    grid-template-columns: 16em 16em;
+  }
+
+  .drawing-gallery img {
+    width: 16em;
+    height: 16em;
+  }
 }
 
 @media (max-width: 36em) {
@@ -271,6 +298,10 @@ header nav ul li a {
   }
 
   .art-selection {
+    grid-template-columns: 16em;
+  }
+
+  .drawing-gallery {
     grid-template-columns: 16em;
   }
 }
