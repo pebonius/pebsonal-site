@@ -239,12 +239,23 @@ header nav ul li a {
   display: grid;
   grid-template-columns: 25em 25em;
   width: fit-content;
-  margin: 1em auto;
+  margin: 2em auto;
 }
 
 .drawing-gallery img {
   width: 25em;
   height: 25em;
+  object-fit: cover;
+}
+
+.drawing-big {
+  width: fit-content;
+  margin: 2em auto;
+}
+
+.drawing-big img {
+  width: 50em;
+  height: 30em;
   object-fit: cover;
 }
 
@@ -281,6 +292,11 @@ header nav ul li a {
     width: 16em;
     height: 16em;
   }
+
+  .drawing-big img {
+    width: 32em;
+    height: 16em;
+  }
 }
 
 @media (max-width: 36em) {
@@ -303,5 +319,10 @@ header nav ul li a {
 
   .drawing-gallery {
     grid-template-columns: 16em;
+  }
+
+  .drawing-big img {
+    width: 16em;
+    height: 16em;
   }
 }
