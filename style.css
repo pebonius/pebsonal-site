@@ -146,14 +146,6 @@ header nav ul li a {
   content: " ▷";
 }
 
-.credits li::before {
-  content: "💙";
-}
-
-.credits li::after {
-  content: "💙";
-}
-
 .reviews li {
   padding: 1em;
   border: 1px solid var(--border-color);
