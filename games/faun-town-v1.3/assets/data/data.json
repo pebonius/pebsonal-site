@@ -1,0 +1,455 @@
+{
+  "meta": {
+    "title": "faun goes to town",
+    "menuBackground": "pcPortrait",
+    "menuMusic": "hometown",
+    "about": "a game by peb."
+  },
+  "playerData": {
+    "name": "player",
+    "map": 0,
+    "posX": 2,
+    "posY": 5,
+    "sprite": "pc"
+  },
+  "variables": [
+    { "name": "introPlayed", "value": false },
+    {
+      "name": "townEntered",
+      "value": false
+    },
+    { "name": "survivorTalked", "value": false },
+    { "name": "caveIntroPlayed", "value": false }
+  ],
+  "maps": [
+    {
+      "name": "overworld",
+      "walkableTiles": [1, 4, 5, 9, 35, 37],
+      "tiles": [
+        [16, 16, 16, 16, 25, 26, 27, 28, 16, 16],
+        [16, 16, 16, 21, 29, 30, 31, 32, 22, 16],
+        [16, 16, 16, 17, 33, 34, 35, 36, 15, 16],
+        [16, 16, 16, 23, 14, 1, 9, 1, 15, 16],
+        [16, 21, 19, 22, 17, 3, 9, 1, 15, 16],
+        [16, 17, 1, 15, 17, 1, 9, 1, 15, 16],
+        [16, 17, 9, 18, 20, 1, 9, 3, 15, 16],
+        [16, 17, 37, 4, 4, 4, 5, 1, 15, 16],
+        [16, 23, 13, 13, 13, 13, 13, 13, 24, 16],
+        [16, 16, 16, 16, 16, 16, 16, 16, 16, 16]
+      ],
+      "events": [
+        {
+          "name": "intro",
+          "posX": 2,
+          "posY": 6,
+          "sprite": "",
+          "condition": "variableValueIs",
+          "conditionArgs": ["introPlayed", false],
+          "actions": [
+            {
+              "name": "playMusic",
+              "arguments": ["prairieNights", true]
+            },
+            {
+              "name": "setVariableValue",
+              "arguments": ["introPlayed", true]
+            },
+            {
+              "name": "playDialogue",
+              "arguments": [
+                [
+                  {
+                    "text": "i heard a nearby town was decimated by a monster"
+                  },
+                  { "text": "i have to go check it out and help or something" }
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "name": "overworld-to-town",
+          "posX": 6,
+          "posY": 2,
+          "sprite": "",
+          "actions": [{ "name": "movePlayer", "arguments": [4, 9, 1] }]
+        },
+        {
+          "name": "secret tree",
+          "posX": 7,
+          "posY": 3,
+          "sprite": "3",
+          "actions": [
+            {
+              "name": "playDialogue",
+              "arguments": [
+                [
+                  { "text": "<<you have found the secret tree event>>" },
+                  { "text": "<<you feel truly blessed>>" }
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "town",
+      "walkableTiles": [1, 4, 5, 7, 9, 10, 35, 37, 38],
+      "tiles": [
+        [16, 16, 16, 16, 16, 16, 16, 16, 16, 16],
+        [16, 21, 19, 6, 7, 8, 19, 19, 22, 16],
+        [16, 17, 1, 3, 9, 3, 1, 1, 15, 16],
+        [16, 17, 1, 1, 9, 1, 1, 1, 15, 16],
+        [16, 17, 1, 38, 10, 4, 38, 1, 15, 16],
+        [16, 17, 1, 9, 1, 3, 9, 1, 15, 16],
+        [16, 17, 1, 10, 38, 4, 5, 1, 15, 16],
+        [16, 17, 1, 1, 9, 1, 1, 3, 15, 16],
+        [16, 23, 13, 14, 9, 12, 13, 13, 24, 16],
+        [16, 16, 16, 17, 9, 15, 16, 16, 16, 16]
+      ],
+      "events": [
+        {
+          "name": "town-to-overworld",
+          "posX": 4,
+          "posY": 9,
+          "sprite": "",
+          "actions": [{ "name": "movePlayer", "arguments": [6, 2, 0] }]
+        },
+        {
+          "name": "town",
+          "posX": 4,
+          "posY": 8,
+          "sprite": "",
+          "condition": "variableValueIs",
+          "conditionArgs": ["townEntered", false],
+          "actions": [
+            {
+              "name": "setVariableValue",
+              "arguments": ["townEntered", true]
+            },
+            {
+              "name": "playDialogue",
+              "arguments": [
+                [
+                  { "text": "i have arrived in town." },
+                  { "text": "it looks very shitty and abandoned." },
+                  {
+                    "text": "i wonder if any of the townspeople are still here"
+                  }
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "name": "house 1",
+          "posX": 4,
+          "posY": 5,
+          "sprite": "2",
+          "actions": [
+            {
+              "name": "setVariableValue",
+              "arguments": ["survivorTalked", true]
+            },
+            {
+              "name": "playDialogue",
+              "arguments": [
+                [
+                  { "text": "is anyone there?" },
+                  { "text": "<<yes i am the sole survivor>>" },
+                  { "text": "<<all other townspeople have been killed>>" },
+                  { "text": "<<so don't bother checking other houses>>" },
+                  { "text": "<<the monster's lair is at far end of town>>" },
+                  { "text": "thanks i'll check it out" }
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "name": "house 2",
+          "posX": 2,
+          "posY": 6,
+          "sprite": "2",
+          "actions": [
+            {
+              "name": "playDialogue",
+              "arguments": [
+                [
+                  { "text": "<<knock knock>>" },
+                  { "text": "..." },
+                  { "text": "there is no reply" }
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "name": "house 3",
+          "posX": 2,
+          "posY": 4,
+          "sprite": "2",
+          "actions": [
+            {
+              "name": "playDialogue",
+              "arguments": [
+                [
+                  { "text": "<<knock knock>>" },
+                  { "text": "..." },
+                  { "text": "there is no reply" }
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "name": "house 4",
+          "posX": 6,
+          "posY": 3,
+          "sprite": "2",
+          "actions": [
+            {
+              "name": "playDialogue",
+              "arguments": [
+                [
+                  { "text": "<<knock knock>>" },
+                  { "text": "..." },
+                  { "text": "there is no reply" }
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "name": "house 5",
+          "posX": 7,
+          "posY": 4,
+          "sprite": "2",
+          "actions": [
+            {
+              "name": "playDialogue",
+              "arguments": [
+                [
+                  { "text": "<<knock knock>>" },
+                  { "text": "..." },
+                  { "text": "there is no reply" }
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "name": "house 6",
+          "posX": 3,
+          "posY": 3,
+          "sprite": "2",
+          "actions": [
+            {
+              "name": "playDialogue",
+              "arguments": [
+                [
+                  { "text": "<<knock knock>>" },
+                  { "text": "..." },
+                  { "text": "there is no reply" }
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "name": "cave",
+          "posX": 4,
+          "posY": 2,
+          "sprite": "",
+          "condition": "variableValueIs",
+          "conditionArgs": ["survivorTalked", false],
+          "actions": [
+            {
+              "name": "playDialogue",
+              "arguments": [
+                [
+                  { "text": "there is some hole here" },
+                  { "text": "i should check the town for survivors first" }
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "name": "town-to-cave",
+          "posX": 4,
+          "posY": 1,
+          "sprite": "",
+          "actions": [
+            {
+              "name": "playMusic",
+              "arguments": ["catacombs", true]
+            },
+            { "name": "movePlayer", "arguments": [4, 9, 2] }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "cave",
+      "walkableTiles": [1],
+      "tiles": [
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 1, 0, 0, 0, 0, 0]
+      ],
+      "events": [
+        {
+          "name": "caveIntro",
+          "posX": 4,
+          "posY": 8,
+          "sprite": "",
+          "condition": "variableValueIs",
+          "conditionArgs": ["caveIntroPlayed", false],
+          "actions": [
+            {
+              "name": "setVariableValue",
+              "arguments": ["caveIntroPlayed", true]
+            },
+            {
+              "name": "playDialogue",
+              "arguments": [
+                [
+                  { "text": "this is the monster's lair?" },
+                  { "text": "something's not right..." }
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "name": "cave-to-town",
+          "posX": 4,
+          "posY": 9,
+          "sprite": "",
+          "actions": [
+            {
+              "name": "playDialogue",
+              "arguments": [[{ "text": "i can't run from this any more." }]]
+            }
+          ]
+        },
+        {
+          "name": "monster",
+          "posX": 4,
+          "posY": 4,
+          "sprite": "pc",
+          "actions": [
+            {
+              "name": "playMusic",
+              "arguments": ["fightFor", true]
+            },
+            {
+              "name": "playDialogue",
+              "arguments": [
+                [
+                  { "text": "are you... me?" },
+                  { "text": "<<yes and no>>" },
+                  { "text": "<<i am the manifestation of your ego>>" },
+                  { "text": "<<i am you, yet i am nothing like you>>" },
+                  { "text": "so i was the monster all along?" },
+                  { "text": "<<true monster is the one who denies the self>>" },
+                  { "text": "<<you were always weak>>" },
+                  { "text": "<<didn't confess to your high school crush>>" },
+                  {
+                    "text": "<<didn't go out with that <person> from art school>>"
+                  },
+                  { "text": "<<you don't even have a t*nder profile>>" },
+                  { "text": "<<all for fear of rejection>>" },
+                  { "text": "wait..." },
+                  { "text": "<<i am not bound by it>>" },
+                  { "text": "<<i abide by my own rule>>" },
+                  { "text": "<<i date people!>>" },
+                  { "text": "please... no more" },
+                  { "text": "<<i go to clubs on saturdays!!!>>" },
+                  { "text": "no more!" },
+                  { "text": "<<I LOST MY VERGONITY AT 24!!>>" },
+                  { "text": "NOOOOOOO!!!" },
+                  { "text": "..." },
+                  {
+                    "text": "<<it looks like i have inflicted enough damage>>"
+                  },
+                  { "text": "<<now that you know you cannot win>>" },
+                  {
+                    "text": "<<go back and live the rest of your miserable life>>"
+                  },
+                  { "text": "..." },
+                  { "text": "... no" },
+                  { "text": "<<what's that?>>" },
+                  { "text": "it's true, i might be a hopeless vergine" },
+                  { "text": "but there is more to life than smexing" },
+                  { "text": "<<huh?>>" },
+                  { "text": "why should i make a t*nder profile" },
+                  { "text": "when i have a fur*ffinity profile?" },
+                  { "text": "<<wait>>" },
+                  { "text": "you lost your vergonity at 24?" },
+                  { "text": "<<stop...>>" },
+                  { "text": "well i was yiffing at 20!" },
+                  { "text": "<<STOP!>>" },
+                  { "text": "i have a p*treon with 1k subs!" },
+                  {
+                    "text": "people pay me to draw dragons @%(# each other!!!"
+                  },
+                  { "text": "MY POWER CANNOT BE CONTAINED!!1!1!!!!" },
+                  { "text": "<<HUAAAAAAAAAAARG!!>>" },
+                  { "text": "SHWAZONNNNNNG!!" },
+                  { "text": "(there is a big flash of light)" },
+                  { "text": "(i am lazy and didn't program that in)" },
+                  { "text": "(THE END)" },
+                  {
+                    "text": "...",
+                    "action": { "name": "endGame", "arguments": [] }
+                  }
+                ]
+              ]
+            },
+            { "name": "movePlayer", "arguments": [4, 5, 3] }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "cave end",
+      "walkableTiles": [1],
+      "tiles": [
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      ],
+      "events": [
+        {
+          "name": "monster",
+          "posX": 4,
+          "posY": 4,
+          "sprite": "pc",
+          "actions": [
+            {
+              "name": "endGame",
+              "arguments": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
