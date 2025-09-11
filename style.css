@@ -249,20 +249,28 @@ header nav ul li a {
   margin: 1em auto;
 }
 
+.art-selection a {
+  text-decoration: none;
+}
+
 .art-tile {
-  width: 25em;
   text-align: center;
   border: 1px solid var(--border-color);
-  padding: 0.2em;
+  background-size: cover;
+  background-position: center;
+  width: 25em;
+  height: 25em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.art-tile p {
+.art-tile-title {
+  color: white;
+  text-transform: uppercase;
   font-weight: bold;
-  margin-top: 0;
-}
-
-.art-tile img {
-  width: 100%;
+  background-color: rgba(0.5, 0.5, 0.5, 0.4);
+  padding: 0.5em;
 }
 
 /* DRAWINGS */
@@ -348,6 +356,7 @@ header nav ul li a {
 
   .art-tile {
     width: 16em;
+    height: 16em;
   }
 
   .drawing-gallery {
