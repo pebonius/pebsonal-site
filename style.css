@@ -346,6 +346,8 @@ header nav ul li a {
 
 .links li {
   margin: 2em 1em;
+  width: 88px;
+  height: 31px;
 }
 
 /* FOOTER */
