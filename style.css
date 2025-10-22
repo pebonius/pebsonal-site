@@ -348,6 +348,27 @@ header nav ul li a {
   margin: 2em 1em;
 }
 
+/* FOOTER */
+footer {
+  width: 100%;
+  margin: 0 auto;
+  padding: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hit-counter {
+  border: 1px solid var(--border-color);
+  background-color: white;
+  display: flex;
+  width: fit-content;
+  padding: 2px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+}
+
 @media (max-width: 960px) {
   .game-gallery {
     grid-template-columns: 16em 16em;
